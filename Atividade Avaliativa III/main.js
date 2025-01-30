@@ -1,19 +1,21 @@
 const params = new URLSearchParams(window.location.search);
-const name = params.get('name');
+let me  = params.get('name');
 const chatHeader = document.getElementById('chat-header');
-
-if (name) {
-    chatHeader.textContent = `Chat com ${name}`;
+const chatBox = document.getElementById("chat-box");
+if (me) {
+    chatHeader.textContent = `Chat com ${me}`;
 }
 
-let me = "BELA"; 
 
 const btnSend = document.getElementById("btn-send");
 const inputMessage = document.getElementById("inpt-msg");
 
 btnSend.addEventListener("click", function () {
-    sendMessage(inputMessage.value);
+   
+    chatBox.innerHTML = chatBox.innerHTML + "<div class='chat-message user'>"+inputMessage.value+"</div>"; 
     inputMessage.value = ""; 
+
+    sendMessage(inputMessage.value);
 });
 
 function sendMessage(message) {
